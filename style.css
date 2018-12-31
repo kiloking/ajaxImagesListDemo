@@ -1,0 +1,25 @@
+.container{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) ;
+  grid-template-rows: repeat(5, 1fr) ;
+  width:900px;
+  margin: 0 auto;
+}
+.item{
+  box-sizing: border-box;
+  margin: 15px;
+  opacity: 0;
+  transition: 0.5s;
+  transform: translateY(50px)
+
+}
+.item img{
+  width:100%;
+  display: block;
+  
+}
+
+.fadeIn{
+  opacity: 1;
+  transform: translateY(0px)
+}

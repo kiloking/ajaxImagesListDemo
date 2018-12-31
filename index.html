@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="main.js"></script>
+<script>
+function getSearchList(){
+  $.ajax({
+    url: 'data.json',
+    type: 'GET',
+    dataType: 'JSON',
+    success: function(data,e,response,request){
+      // console.log(data)
+      var itemsProcessed = 0;
+      data.forEach(element => {
+        createItem(element)
+        itemsProcessed++
+        if(itemsProcessed == data.length){
+          console.log('ok')
+          eachItem()
+        }
+      })
+    },
+    error:function(e){
+      console.log('error' ,e)
+    },
+  });
+}
+getSearchList()
+
+var app = $('#app')
+var container = $('<div></div>').addClass('container')
+app.append(container)
+
+function createItem(element){
+  // console.log(element)
+  var picURL = element.pic
+
+  var item = $('<div></div>').addClass('item')
+  item.append('<img src='+ picURL+'/>')
+  container.append(item)
+
+} 
+function eachItem(){
+  console.log('eachme')
+  $( ".item" ).each(function( index ) {
+    var row = 	$(this)
+    setTimeout(() => {
+      row.addClass('fadeIn')
+    }, 100*index);
+    // $(this).delay(500 * index).addClass('canny')
+  });
+}
+
+</script>
+</html>
